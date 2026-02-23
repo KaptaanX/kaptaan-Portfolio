@@ -1,156 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kaptaan Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaptaan · premium portfolio</title>
+  <!-- Google Fonts + additional Font Awesome icons for extra flair -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    body {
+      background: #0a0c14;
+      color: #ededef;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-<style>
-* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
-body { background:#0c0f17; color:white; overflow-x:hidden; }
+    /* 🌌 premium animated gradient overlay */
+    .gradient-orb {
+      position: fixed;
+      top: -20vh;
+      left: -10vw;
+      width: 70vw;
+      height: 70vh;
+      background: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.35), transparent 70%);
+      border-radius: 50%;
+      filter: blur(90px);
+      z-index: 0;
+      animation: slowDrift 20s infinite alternate ease-in-out;
+    }
 
-header { 
-  height:100vh; 
-  display:flex; 
-  align-items:center; 
-  justify-content:space-between; 
-  padding:0 6%; 
-  position: relative;
-}
+    .gradient-orb-second {
+      position: fixed;
+      bottom: -10vh;
+      right: -5vw;
+      width: 60vw;
+      height: 60vh;
+      background: radial-gradient(circle at 70% 70%, rgba(236, 72, 153, 0.25), transparent 70%);
+      filter: blur(100px);
+      z-index: 0;
+      animation: slowDrift2 18s infinite alternate;
+    }
 
-.text-zone { max-width:50%; }
-.text-zone h1 { font-size:4rem; font-weight:800; line-height:1.1; }
-.text-zone h2 { font-size:1.4rem; margin-top:10px; opacity:0.8; }
-.tagline { margin-top:20px; font-size:1.1rem; color:#9aa0b8; }
-.birthday-thanks { margin-top:14px; font-size:1.05rem; color:#ffd166; }
+    @keyframes slowDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(8%, 6%) scale(1.2); }
+    }
+    @keyframes slowDrift2 {
+      0% { transform: translate(0, 0) scale(1.2); }
+      100% { transform: translate(-8%, -10%) scale(1); }
+    }
 
-.pfp img { 
-  width:300px; 
-  height:300px; 
-  border-radius:50%; 
-  object-fit:cover; 
-  border:4px solid #3b82f6; 
-  box-shadow:0 0 30px rgba(59,130,246,0.4);
-}
+    /* main content sits above orbs */
+    header, section, footer {
+      position: relative;
+      z-index: 5;
+    }
 
-.glow-circle {
-  position:absolute; 
-  width:400px; 
-  height:400px; 
-  background:radial-gradient(circle, #3b82f6, transparent);
-  top:20%; 
-  left:60%; 
-  filter:blur(80px); 
-  animation:float 6s ease-in-out infinite;
-}
+    /* ----- header ----- */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      position: relative;
+      flex-wrap: wrap;
+    }
 
-@keyframes float {
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-30px);}
-  100%{transform:translateY(0);}
-}
+    .text-zone {
+      max-width: 55%;
+      backdrop-filter: blur(2px);
+    }
 
-section { padding:80px 6%; }
+    .text-zone h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff, #c0c9ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 15px rgba(99,102,241,0.3);
+    }
 
-.skills h1, .contact h1 {
-  font-size:2.2rem; 
-  margin-bottom:20px;
-}
+    .text-zone h2 {
+      font-size: 1.4rem;
+      margin-top: 10px;
+      opacity: 0.9;
+      font-weight: 300;
+      color: #b9c2e6;
+    }
 
-.skill-box { display:flex; gap:15px; flex-wrap:wrap; }
-.skill {
-  background:#161b26;
-  padding:12px 18px;
-  border-radius:10px;
-  border:1px solid #2a3040;
-  transition:0.3s;
-}
-.skill:hover { background:#1e2433; transform:translateY(-5px); }
+    .tagline {
+      margin-top: 20px;
+      font-size: 1.15rem;
+      color: #a5b0d0;
+      border-left: 4px solid #6366f1;
+      padding-left: 20px;
+      background: linear-gradient(90deg, rgba(99,102,241,0.1), transparent);
+    }
 
-.contact-links { display:flex; gap:15px; flex-wrap:wrap; }
-.contact-link {
-  background:#161b26;
-  padding:10px 16px;
-  border-radius:8px;
-  color:white;
-  text-decoration:none;
-  border:1px solid #2a3040;
-  transition:0.3s;
-}
-.contact-link:hover { background:#3b82f6; }
+    .birthday-thanks {
+      margin-top: 24px;
+      font-size: 1.1rem;
+      background: rgba(255, 209, 102, 0.08);
+      padding: 16px 20px;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 209, 102, 0.3);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      color: #ffdf99;
+      font-weight: 400;
+      display: inline-block;
+      width: auto;
+    }
 
-footer {
-  text-align:center;
-  padding:40px;
-  opacity:0.6;
-  border-top:1px solid #2a3040;
-}
+    .pfp {
+      position: relative;
+    }
 
-@media (max-width:768px) {
-  header { flex-direction:column-reverse; height:auto; padding:80px 6% 40px; text-align:center; }
-  .text-zone { max-width:100%; }
-}
-</style>
+    .pfp img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(99, 102, 241, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 0 2px rgba(255,255,255,0.05) inset, 0 0 40px #6366f1;
+      transition: 0.4s;
+    }
+
+    .pfp img:hover {
+      transform: scale(1.02);
+      border-color: #f472b6;
+      box-shadow: 0 0 50px #f472b6;
+    }
+
+    /* decorative ring */
+    .pfp::after {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      right: -15px;
+      bottom: -15px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255,255,255,0.2);
+      animation: spin 30s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* sections with glassmorphism */
+    section {
+      padding: 80px 6%;
+    }
+
+    .skills h1, .contact h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+      background: linear-gradient(145deg, #f0f2ff, #a5b0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 30px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .skills h1::after, .contact h1::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, #6366f1, #f472b6, transparent);
+      border-radius: 2px;
+    }
+
+    .skill-box {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .skill {
+      background: rgba(20, 25, 36, 0.7);
+      backdrop-filter: blur(10px);
+      padding: 16px 28px;
+      border-radius: 40px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-weight: 500;
+      font-size: 1.2rem;
+      color: #e0e5ff;
+      box-shadow: 0 12px 22px -8px rgba(0,0,0,0.6);
+      transition: 0.25s ease;
+      letter-spacing: 0.3px;
+    }
+
+    .skill:hover {
+      background: rgba(99, 102, 241, 0.25);
+      border-color: #818cf8;
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 30px -12px #6366f1, 0 0 0 1px #a78bfa inset;
+      color: white;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      background: rgba(20, 25, 36, 0.6);
+      backdrop-filter: blur(8px);
+      padding: 14px 28px;
+      border-radius: 50px;
+      color: #eef2ff;
+      text-decoration: none;
+      border: 1px solid rgba(130, 140, 200, 0.3);
+      font-weight: 500;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      transition: 0.25s;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+    }
+
+    .contact-link i {
+      font-size: 1.4rem;
+      color: #818cf8;
+      transition: 0.2s;
+    }
+
+    .contact-link:hover {
+      background: #4f52e0;
+      border-color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 22px 30px -12px #4f52e0;
+    }
+
+    .contact-link:hover i {
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      opacity: 0.8;
+      border-top: 1px solid rgba(130, 140, 200, 0.2);
+      font-size: 1rem;
+      letter-spacing: 1px;
+      backdrop-filter: blur(5px);
+      background: rgba(8, 10, 18, 0.3);
+      color: #98a1c0;
+    }
+
+    footer i {
+      color: #f472b6;
+      margin: 0 4px;
+    }
+
+    /* responsive */
+    @media (max-width: 950px) {
+      header { flex-direction: column-reverse; justify-content: center; gap: 40px; padding: 100px 6% 40px; text-align: center; }
+      .text-zone { max-width: 100%; }
+      .pfp img { width: 250px; height: 250px; }
+      .birthday-thanks { text-align: left; }
+    }
+
+    @media (max-width: 500px) {
+      .text-zone h1 { font-size: 3rem; }
+      .skill, .contact-link { padding: 12px 20px; font-size: 1rem; }
+    }
+
+    /* typewriter cursor effect (soft) */
+    .typed-cursor {
+      display: inline-block;
+      width: 4px;
+      margin-left: 4px;
+      background: #a5b0ff;
+      animation: blink 0.9s infinite;
+    }
+
+    @keyframes blink {
+      0%,100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
 </head>
 <body>
+  <!-- floating glass orbs -->
+  <div class="gradient-orb"></div>
+  <div class="gradient-orb-second"></div>
 
-<div class="glow-circle"></div>
+  <header>
+    <div class="text-zone">
+      <h1 id="name"></h1>
+      <h2 id="title"></h2>
+      <p class="tagline" id="tagline"></p>
+      <p class="birthday-thanks" id="birthday"></p>
+    </div>
 
-<header>
-  <div class="text-zone">
-    <h1 id="name"></h1>
-    <h2 id="title"></h2>
-    <p class="tagline" id="tagline"></p>
-    <p class="birthday-thanks" id="birthday"></p>
-  </div>
+    <div class="pfp">
+      <img src="https://files.catbox.moe/gintpw.jpg" alt="Kaptaan">
+    </div>
+  </header>
 
-  <div class="pfp">
-    <img src="https://files.catbox.moe/gintpw.jpg" alt="Kaptaan">
-  </div>
-</header>
+  <section class="skills">
+    <h1><i class="fas fa-code" style="margin-right: 12px; color: #818cf8; -webkit-text-fill-color: initial;"></i> skillset</h1>
+    <div class="skill-box">
+      <div class="skill"><i class="fas fa-microphone-alt" style="margin-right: 8px;"></i> Voice Artist</div>
+      <div class="skill"><i class="fas fa-video" style="margin-right: 8px;"></i> Video Editor</div>
+      <div class="skill"><i class="fab fa-python" style="margin-right: 8px;"></i> Python Developer</div>
+      <div class="skill"><i class="fas fa-pen-fancy" style="margin-right: 8px;"></i> Creative Direction</div>
+      <div class="skill"><i class="fas fa-cube" style="margin-right: 8px;"></i> Blender 3D</div>
+    </div>
+  </section>
 
-<section class="skills">
-  <h1>Skills</h1>
-  <div class="skill-box">
-    <div class="skill">Voice Artist</div>
-    <div class="skill">Video Editor</div>
-    <div class="skill">Python Developer</div>
-    <div class="skill">Creative Direction</div>
-  </div>
-</section>
+  <section class="contact">
+    <h1><i class="fas fa-paper-plane" style="margin-right: 12px; color: #f472b6;"></i> connect</h1>
+    <div class="contact-links">
+      <a href="https://www.instagram.com/op_anime_bro" class="contact-link" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="https://t.me/About_KAPTAAN_47" class="contact-link" target="_blank"><i class="fab fa-telegram-plane"></i> Telegram</a>
+      <a href="https://github.com/KaptaanX" class="contact-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+      <a href="#" class="contact-link" target="_blank"><i class="fas fa-envelope"></i> kaptaan@work</a>
+    </div>
+  </section>
 
-<section class="contact">
-  <h1>Contact</h1>
-  <div class="contact-links">
-    <a href="https://www.instagram.com/op_anime_bro" class="contact-link" target="_blank">Instagram</a>
-    <a href="https://t.me/About_KAPTAAN_47" class="contact-link" target="_blank">Telegram</a>
-    <a href="https://github.com/KaptaanX" class="contact-link" target="_blank">GitHub</a>
-  </div>
-</section>
+  <footer>
+    <i class="fas fa-crown" style="opacity: 0.7;"></i> © 2025 SudipX — crafted with <i class="fas fa-heart" style="color: #f471b6;"></i> , logic & midnight caffeine <i class="fas fa-moon"></i>
+  </footer>
 
-<footer>
-  © 2025 SudipX — Crafted with logic, chaos & caffeine.
-</footer>
+  <script>
+    (function() {
+      // elegant typewriter with support for icons? we keep it clean (text only)
+      function typeText(element, text, speed, delay = 0) {
+        if (!element) return;
+        setTimeout(() => {
+          let i = 0;
+          element.textContent = ''; // clear
+          const interval = setInterval(() => {
+            if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+            } else {
+              clearInterval(interval);
+            }
+          }, speed);
+        }, delay);
+      }
 
-<script>
-function typeText(el, text, speed = 50) {
-  let i = 0;
-  const interval = setInterval(() => {
-    el.textContent += text.charAt(i);
-    i++;
-    if (i === text.length) clearInterval(interval);
-  }, speed);
-}
+      // fetch elements
+      const nameEl = document.getElementById('name');
+      const titleEl = document.getElementById('title');
+      const taglineEl = document.getElementById('tagline');
+      const birthdayEl = document.getElementById('birthday');
 
-window.onload = () => {
-  typeText(document.getElementById('name'), 'Kaptaan', 80);
-  setTimeout(() => typeText(document.getElementById('title'), 'Voice Artist • Web Developer • Creative Builder', 40), 800);
-  setTimeout(() => typeText(document.getElementById('tagline'), '19 y/o from Kolkata, crafting digital experiences with tech, logic, and a bit of chaos.', 25), 2000);
-  setTimeout(() => typeText(document.getElementById('birthday'), 'Thanks for all the birthday wishes ❤️ Thanks again for staying with me 💖 I’m grateful for friends like you ✨', 25), 3500);
-};
-</script>
+      // texts
+      const nameText = 'Kaptaan';
+      const titleText = 'Voice Artist • Web Developer • Creative Builder';
+      const taglineText = '19 y/o from Kolkata, crafting digital experiences with tech, logic, and a bit of chaos.';
+      const birthdayText = 'Thanks for all the birthday wishes ❤️ Thanks again for staying with me 💖 I’m grateful for friends like you ✨';
 
+      // start cascade
+      typeText(nameEl, nameText, 70, 200);
+      typeText(titleEl, titleText, 35, 800);
+      typeText(taglineEl, taglineText, 25, 2000);
+      typeText(birthdayEl, birthdayText, 25, 3500);
+    })();
+  </script>
+  <!-- add subtle trailing glow effect for premium look (extra love) -->
+  <style>
+    /* additional micro-animations */
+    .skill, .contact-link {
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+    }
+    .pfp img {
+      transition: border-color 0.4s, box-shadow 0.5s, transform 0.3s;
+    }
+    .birthday-thanks {
+      transition: 0.3s;
+    }
+    .birthday-thanks:hover {
+      background: rgba(255, 209, 102, 0.15);
+      border-color: #ffb347;
+      box-shadow: 0 12px 28px #b85e0040;
+    }
+    /* glow on headers */
+    h1 i {
+      filter: drop-shadow(0 0 6px currentColor);
+    }
+    /* smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    /* custom cursor effect? subtle, but no – just extra */
+    ::selection {
+      background: #818cf8;
+      color: #0a0c14;
+    }
+  </style>
 </body>
 </html>
